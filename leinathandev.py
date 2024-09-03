@@ -928,5 +928,6 @@ def auto_create():
         else:
             rp(f"{R}Invalid choice. Please select a valid option.")            
                                                                                                                         
-                                              
+if __name__ == "__main__":
+    main()                                     
 #
