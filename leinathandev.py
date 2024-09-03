@@ -928,38 +928,5 @@ def auto_create():
         else:
             rp(f"{R}Invalid choice. Please select a valid option.")            
                                                                                                                         
-                                                
-def main():
-    if FIXED_APPROVAL_KEY is None:
-        rp(f"{R}Fixed approval key could not be loaded. Exiting.")
-        exit()
-
-    if not is_api_reachable():
-        rp(f"{G}                          -RFCP TEAM")
-        exit()
-
-    while True:
-        user_choice = input("Do you want to generate a new access key? (yes/no): ").strip().lower()
-        if user_choice == 'yes':
-            if os.path.exists(AUTH_KEY_FILE):
-                delete_access_key()  
-            generated_key = generate_access_key()
-            save_access_key(generated_key)
-        elif user_choice == 'no':
-            if not os.path.exists(AUTH_KEY_FILE):
-                rp(f"{R}No access key has been generated. Please generate a key first.")
-                continue
-            with open(AUTH_KEY_FILE, 'r') as f:
-                generated_key = f.read().strip()
-            rp(f"{G}Using the previously generated access key.")
-        else:
-            rp(f"{R}Invalid choice. Please enter 'yes' or 'no'.")
-            continue
-        break
-
-    clear_console()
-    approve_key()
-
-if __name__ == "__main__":
-    main()
+                                              
 #
