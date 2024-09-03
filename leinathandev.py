@@ -47,48 +47,6 @@ Y = "[bold yellow]"
 B = "[bold blue]"
 M = "[bold magenta]"
 
-APPROVAL_KEY_FILE = 'approval_key.txt'
-KEY_TIMESTAMP_FILE = 'key_timestamp.txt'
-AUTH_KEY_FILE = 'authkey/accesskey.txt'
-
-def get_fixed_approval_key():
-    try:
-        with open(AUTH_KEY_FILE, 'r') as f:
-            return f.read().strip()
-    except Exception as e:
-        rp(f"{R}Error reading the fixed approval key: {e}")
-        return None
-
-FIXED_APPROVAL_KEY = get_fixed_approval_key()
-
-BASE_URL = "https://dropmail.me/api/graphql/web-test-wgq6m5i"
-API_URL = 'http://de3.bot-hosting.net:20304/tokens/'
-
-def save_approval_key(key):
-    try:
-        with open(APPROVAL_KEY_FILE, 'w') as f:
-            f.write(key)
-        with open(KEY_TIMESTAMP_FILE, 'w') as f:
-            f.write(str(time.time()))
-        rp(f"{G}Please refresh this tool...")
-    except Exception as e:
-        rp(f"{R}Error saving approval key: {e}")
-
-def save_access_key(key):
-    try:
-        os.makedirs(os.path.dirname(AUTH_KEY_FILE), exist_ok=True)
-        with open(AUTH_KEY_FILE, 'w') as f:
-            f.write(key)
-        rp(f"{G}Your access key is: {key}")
-        rp(f"{G}Give this access key to the tool owner.")
-    except Exception as e:
-        rp(f"{R}Error saving access key: {e}")
-
-def generate_access_key(length=16):
-
-    characters = string.ascii_letters + string.digits
-    random_key = ''.join(random.choice(characters) for _ in range(length))
-    return f"RFCP-KEY-{random_key}"
 
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
